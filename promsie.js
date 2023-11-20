@@ -46,3 +46,22 @@ Promise.all([
     console.log("Remaining Posts:", posts);
   })
   .catch((error) => console.log(error));
+
+// async.await to handle both createPost and updateLastUserActivityTime  
+  async function handlePostOperations() {
+    try {
+      await createPost({ title: "Post 1", body: "This is Post 1" });
+  
+      const updatedLastActivityTime = await updateLastUserActivityTime();
+      console.log("All Posts:", posts);
+      console.log("Last Activity Time:", updatedLastActivityTime);
+  
+      const deletedPost = await deletePost();
+      console.log("Deleted Post:", deletedPost);
+      console.log("Remaining Posts:", posts);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
+  handlePostOperations();  
